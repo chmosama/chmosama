@@ -7,7 +7,6 @@
 [![Website](https://img.shields.io/badge/🌐-chmosama.com-0d1117?style=for-the-badge)](https://www.chmosama.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/chmosama)
 [![Blog](https://img.shields.io/badge/Blog-Security_Things-FF6B35?style=for-the-badge&logo=rss&logoColor=white)](https://www.chmosama.com/blog)
-[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/ChMuhammadOsama)
 
 </div>
 
@@ -17,7 +16,7 @@
 $ cat /etc/profile.d/osama.conf
 
 NAME="Choudhary Muhammad Osama"
-ROLE="Senior Security Engineer @ NayaPay"
+ROLE="Senior Security Engineer"
 DOMAINS=(Red-Teaming AppSec DevSecOps)
 ```
 
