@@ -1,19 +1,14 @@
 """
 generate.py — builds dark_mode.svg and light_mode.svg for chmosama's profile.
-No emojis, no custom fonts — renders cleanly in GitHub's SVG viewer.
+Alternating row stripes, tight 22px row height, no emojis, system fonts only.
 Requires: GH_TOKEN env var (classic PAT, read:user + repo scopes).
 """
 
-import os
-import datetime
-import requests
+import os, datetime, requests
 
 TOKEN    = os.environ["GH_TOKEN"]
 USERNAME = "chmosama"
-HEADERS  = {
-    "Authorization": f"bearer {TOKEN}",
-    "Content-Type":  "application/json",
-}
+HEADERS  = {"Authorization": f"bearer {TOKEN}", "Content-Type": "application/json"}
 
 def gql(query, variables=None):
     r = requests.post(
@@ -33,23 +28,21 @@ query($login: String!, $from: DateTime!, $to: DateTime!) {
     repositories(ownerAffiliations: OWNER, privacy: PUBLIC) { totalCount }
     repositoriesContributedTo(
       contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]
-      includeUserRepositories: true
-      privacy: PUBLIC
+      includeUserRepositories: true privacy: PUBLIC
     ) { totalCount }
     contributionsCollection(from: $from, to: $to) {
       totalCommitContributions
-      totalPullRequestContributions
       contributionCalendar { totalContributions }
     }
     pullRequests(states: MERGED) { totalCount }
-    issues(states: OPEN)         { totalCount }
+    issues(states: OPEN) { totalCount }
   }
 }
 """
 
-now   = datetime.datetime.utcnow()
-year  = now.year
-data  = gql(QUERY, {
+now  = datetime.datetime.utcnow()
+year = now.year
+data = gql(QUERY, {
     "login": USERNAME,
     "from":  f"{year}-01-01T00:00:00Z",
     "to":    now.strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -59,87 +52,77 @@ created   = datetime.datetime.fromisoformat(data["createdAt"].replace("Z", "+00:
 age_years = (datetime.datetime.now(datetime.timezone.utc) - created).days / 365.25
 cc        = data["contributionsCollection"]
 
-stats = {
-    "repos":               data["repositories"]["totalCount"],
-    "followers":           data["followers"]["totalCount"],
-    "following":           data["following"]["totalCount"],
-    f"commits_{year}":     cc["totalCommitContributions"],
-    "prs_merged":          data["pullRequests"]["totalCount"],
-    f"contributions_{year}": cc["contributionCalendar"]["totalContributions"],
-    "repos_contributed_to": data["repositoriesContributedTo"]["totalCount"],
-    "open_issues":         data["issues"]["totalCount"],
-    "account_age":         f"{age_years:.1f} years",
-}
+ROWS = [
+    ("repos",                     data["repositories"]["totalCount"]),
+    ("followers",                 data["followers"]["totalCount"]),
+    ("following",                 data["following"]["totalCount"]),
+    (f"commits_{year}",           cc["totalCommitContributions"]),
+    ("prs_merged",                data["pullRequests"]["totalCount"]),
+    (f"contributions_{year}",     cc["contributionCalendar"]["totalContributions"]),
+    ("repos_contributed_to",      data["repositoriesContributedTo"]["totalCount"]),
+    ("open_issues",               data["issues"]["totalCount"]),
+    ("account_age",               f"{age_years:.1f} years"),
+]
 
 updated = now.strftime("%d %b %Y, %H:%M UTC")
-print(stats)
 
-
-def fmt(v):
-    if isinstance(v, int):
-        return f"{v:,}"
-    return str(v)
-
+ROW_H    = 22   # height of each data row
+ROW_PAD  = 15   # baseline offset within row
+FIRST_Y  = 76   # y of first row rect
+HEADER_H = 48
+PROMPT_Y = 68
+FOOTER_MARGIN = 28
 
 def make_svg(dark: bool) -> str:
-    bg       = "#0d1117" if dark else "#ffffff"
-    surface  = "#161b22" if dark else "#f6f8fa"
-    border   = "#30363d" if dark else "#d0d7de"
-    divider  = "#21262d" if dark else "#eaeef2"
-    label    = "#8b949e" if dark else "#57606a"
-    value    = "#3fb950" if dark else "#1a7f37"
-    accent   = "#58a6ff" if dark else "#0969da"
-    text_pri = "#e6edf3" if dark else "#1f2328"
-    prompt   = "#3fb950" if dark else "#1a7f37"
-    bar_acc  = "#00d26a" if dark else "#1a7f37"
+    bg      = "#0d1117" if dark else "#ffffff"
+    stripe  = "#161b22" if dark else "#f6f8fa"
+    border  = "#30363d" if dark else "#d0d7de"
+    label   = "#8b949e" if dark else "#57606a"
+    val_col = "#3fb950" if dark else "#1a7f37"
+    accent  = "#58a6ff" if dark else "#0969da"
+    hdr_bg  = "#161b22" if dark else "#f6f8fa"
+    bar     = "#3fb950" if dark else "#1a7f37"
+    pri     = "#e6edf3" if dark else "#1f2328"
+    muted   = "#484f58" if dark else "#8c959f"
+    div     = "#21262d" if dark else "#d0d7de"
+    prompt  = "#3fb950" if dark else "#1a7f37"
 
-    ROW_H   = 24
-    START_Y = 100
-    MONO    = "font-family=\"'Courier New', Courier, monospace\""
-    SANS    = "font-family=\"'Segoe UI', Arial, sans-serif\""
+    total_h = FIRST_Y + len(ROWS) * ROW_H + FOOTER_MARGIN + 18
 
+    # alternating row stripes (even indices = stripe)
+    stripes = ""
+    for i in range(len(ROWS)):
+        if i % 2 == 0:
+            ry = FIRST_Y + i * ROW_H
+            stripes += f'  <rect x="1" y="{ry}" width="478" height="{ROW_H}" fill="{stripe}"/>\n'
+
+    # data rows
     rows_svg = ""
-    for i, (k, v) in enumerate(stats.items()):
-        y   = START_Y + i * ROW_H
-        val = fmt(v)
-        # last stat (account_age) in accent colour
-        vc  = accent if k == "account_age" else value
-        rows_svg += f"""
-  <text x="24"  y="{y}" font-size="12" fill="{label}" {MONO}>{k}</text>
-  <text x="456" y="{y}" font-size="12" fill="{vc}" font-weight="600" text-anchor="end" {MONO}>{val}</text>"""
+    for i, (key, val) in enumerate(ROWS):
+        y  = FIRST_Y + i * ROW_H + ROW_PAD
+        vc = accent if key == "account_age" else val_col
+        fmtval = f"{val:,}" if isinstance(val, int) else val
+        rows_svg += f'  <text x="22"  y="{y}" font-size="12" fill="{label}" font-family="\'Courier New\', monospace">{key}</text>\n'
+        rows_svg += f'  <text x="458" y="{y}" font-size="12" fill="{vc}" font-weight="700" text-anchor="end" font-family="\'Courier New\', monospace">{fmtval}</text>\n'
 
-    h = START_Y + len(stats) * ROW_H + 40   # dynamic height
+    footer_line_y = FIRST_Y + len(ROWS) * ROW_H + 9
+    footer_text_y = footer_line_y + 16
 
-    return f"""<svg width="480" height="{h}" viewBox="0 0 480 {h}"
-     xmlns="http://www.w3.org/2000/svg">
-
-  <!-- card -->
-  <rect width="480" height="{h}" rx="10" fill="{bg}" stroke="{border}" stroke-width="1"/>
-
-  <!-- header -->
-  <rect width="480" height="44" rx="10" fill="{surface}"/>
-  <rect y="34" width="480" height="10" fill="{surface}"/>
-  <rect x="16" y="13" width="3" height="18" rx="1.5" fill="{bar_acc}"/>
-  <text x="28" y="27" font-size="13" font-weight="600" fill="{text_pri}" {SANS}>chmosama</text>
-  <text x="98" y="27" font-size="13" fill="{label}" {SANS}>/</text>
-  <text x="107" y="27" font-size="13" fill="{accent}" {SANS}>stats.sh</text>
-  <text x="456" y="27" font-size="10" fill="{label}" text-anchor="end" {SANS}>{updated}</text>
-
-  <!-- prompt -->
-  <text x="24" y="66" font-size="11" fill="{prompt}" {MONO}>$ ./stats --user chmosama --year {year}</text>
-  <line x1="24" y1="78" x2="456" y2="78" stroke="{divider}" stroke-width="1"/>
-
-  {rows_svg}
-
-  <!-- footer -->
-  <line x1="24" y1="{h - 22}" x2="456" y2="{h - 22}" stroke="{divider}" stroke-width="1"/>
-  <text x="24" y="{h - 8}" font-size="10" fill="{prompt}" {MONO}>exit 0  # auto-updated every 6h via github actions</text>
+    return f"""<svg width="480" height="{total_h}" viewBox="0 0 480 {total_h}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="{total_h}" rx="10" fill="{bg}" stroke="{border}" stroke-width="1"/>
+  <rect width="480" height="{HEADER_H}" rx="10" fill="{hdr_bg}"/>
+  <rect y="{HEADER_H - 10}" width="480" height="10" fill="{hdr_bg}"/>
+  <rect x="18" y="14" width="3" height="20" rx="1.5" fill="{bar}"/>
+  <text x="30" y="29" font-size="13" font-weight="600" fill="{pri}" font-family="Arial, sans-serif">chmosama</text>
+  <text x="103" y="29" font-size="13" fill="{muted}" font-family="Arial, sans-serif">/</text>
+  <text x="113" y="29" font-size="13" fill="{accent}" font-family="Arial, sans-serif">stats.sh</text>
+  <text x="462" y="29" font-size="10" fill="{muted}" text-anchor="end" font-family="Arial, sans-serif">{updated}</text>
+  <text x="22" y="{PROMPT_Y}" font-size="11" fill="{prompt}" font-family="'Courier New', monospace">$ ./stats --user chmosama --year {year}</text>
+{stripes}{rows_svg}  <line x1="18" y1="{footer_line_y}" x2="462" y2="{footer_line_y}" stroke="{div}" stroke-width="0.8"/>
+  <text x="22" y="{footer_text_y}" font-size="10" fill="{muted}" font-family="'Courier New', monospace">exit 0  # auto-updated every 6h via github actions</text>
 </svg>"""
 
-
-with open("dark_mode.svg",  "w") as f:
-    f.write(make_svg(dark=True))
-with open("light_mode.svg", "w") as f:
-    f.write(make_svg(dark=False))
-
-print("dark_mode.svg and light_mode.svg written")
+for fname, dark in [("dark_mode.svg", True), ("light_mode.svg", False)]:
+    with open(fname, "w") as f:
+        f.write(make_svg(dark))
+    print(f"wrote {fname}")
