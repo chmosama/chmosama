@@ -6,7 +6,21 @@
 
 [![Website](https://img.shields.io/badge/🌐-chmosama.com-0d1117?style=for-the-badge)](https://www.chmosama.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/chmosama)
-[![Blog](https://img.shields.io/badge/Blog-Security_Things-FF6B35?style=for-the-badge&logo=rss&logoColor=white)](https://www.chmosama.com/blog)
+
+![BSCP](https://img.shields.io/badge/BSCP-0d1117?style=flat-square&logo=portswigger&logoColor=FF6633)
+![CDP](https://img.shields.io/badge/CDP-0d1117?style=flat-square&logo=dev.to&logoColor=58a6ff)
+![AWS CCP](https://img.shields.io/badge/AWS_CCP-0d1117?style=flat-square&logo=await&logoColor=ffa657)
+![PenTest+](https://img.shields.io/badge/PenTest%2B-0d1117?style=flat-square&logo=comptia&logoColor=f85149)
+![HTB Dante](https://img.shields.io/badge/HTB_Dante-0d1117?style=flat-square&logo=hackthebox&logoColor=9FEF00)
+![CRTP](https://img.shields.io/badge/CRTP-0d1117?style=flat-square&logo=stackhawk&logoColor=white)
+![eCPPT](https://img.shields.io/badge/eCPPT-0d1117?style=flat-square&logo=hackaday&logoColor=f85149)
+![eWPTX](https://img.shields.io/badge/eWPTX-0d1117?style=flat-square&logo=hackaday&logoColor=f85149)
+![eWPT](https://img.shields.io/badge/eWPT-0d1117?style=flat-square&logo=hackaday&logoColor=f85149)
+![eJPT](https://img.shields.io/badge/eJPT-0d1117?style=flat-square&logo=hackaday&logoColor=f85149)
+![Security+](https://img.shields.io/badge/Security%2B-0d1117?style=flat-square&logo=comptia&logoColor=f85149)
+![LPIC-1](https://img.shields.io/badge/LPIC--1-0d1117?style=flat-square&logo=linux&logoColor=ffa657)
+![Linux+](https://img.shields.io/badge/Linux%2B-0d1117?style=flat-square&logo=comptia&logoColor=ffa657)
+![A+](https://img.shields.io/badge/A%2B-0d1117?style=flat-square&logo=comptia&logoColor=ffa657)
 
 </div>
 
@@ -23,13 +37,11 @@ DOMAINS=(Red-Teaming AppSec DevSecOps)
 ---
 
 <div align="center">
-
-### 📊 GitHub Stats
-
 <picture>
   <source media="(prefers-color-scheme: dark)"  srcset="dark_mode.svg">
   <source media="(prefers-color-scheme: light)" srcset="light_mode.svg">
-  <img src="dark_mode.svg" alt="chmosama GitHub stats" width="420">
+  <img src="dark_mode.svg" alt="chmosama GitHub stats" width="460">
 </picture>
-
 </div>
+
+---
