@@ -1,43 +1,36 @@
-<svg width="480" height="356" viewBox="0 0 480 356"
-     xmlns="http://www.w3.org/2000/svg">
-
-  <!-- card -->
-  <rect width="480" height="356" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
-
-  <!-- header -->
-  <rect width="480" height="44" rx="10" fill="#f6f8fa"/>
-  <rect y="34" width="480" height="10" fill="#f6f8fa"/>
-  <rect x="16" y="13" width="3" height="18" rx="1.5" fill="#1a7f37"/>
-  <text x="28" y="27" font-size="13" font-weight="600" fill="#1f2328" font-family="'Segoe UI', Arial, sans-serif">chmosama</text>
-  <text x="98" y="27" font-size="13" fill="#57606a" font-family="'Segoe UI', Arial, sans-serif">/</text>
-  <text x="107" y="27" font-size="13" fill="#0969da" font-family="'Segoe UI', Arial, sans-serif">stats.sh</text>
-  <text x="456" y="27" font-size="10" fill="#57606a" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif">26 Jun 2026, 17:47 UTC</text>
-
-  <!-- prompt -->
-  <text x="24" y="66" font-size="11" fill="#1a7f37" font-family="'Courier New', Courier, monospace">$ ./stats --user chmosama --year 2026</text>
-  <line x1="24" y1="78" x2="456" y2="78" stroke="#eaeef2" stroke-width="1"/>
-
-  
-  <text x="24"  y="100" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">repos</text>
-  <text x="456" y="100" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">14</text>
-  <text x="24"  y="124" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">followers</text>
-  <text x="456" y="124" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">25</text>
-  <text x="24"  y="148" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">following</text>
-  <text x="456" y="148" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">58</text>
-  <text x="24"  y="172" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">commits_2026</text>
-  <text x="456" y="172" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">112</text>
-  <text x="24"  y="196" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">prs_merged</text>
-  <text x="456" y="196" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">175</text>
-  <text x="24"  y="220" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">contributions_2026</text>
-  <text x="456" y="220" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">177</text>
-  <text x="24"  y="244" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">repos_contributed_to</text>
-  <text x="456" y="244" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">3</text>
-  <text x="24"  y="268" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">open_issues</text>
-  <text x="456" y="268" font-size="12" fill="#1a7f37" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">3</text>
-  <text x="24"  y="292" font-size="12" fill="#57606a" font-family="'Courier New', Courier, monospace">account_age</text>
-  <text x="456" y="292" font-size="12" fill="#0969da" font-weight="600" text-anchor="end" font-family="'Courier New', Courier, monospace">12.1 years</text>
-
-  <!-- footer -->
-  <line x1="24" y1="334" x2="456" y2="334" stroke="#eaeef2" stroke-width="1"/>
-  <text x="24" y="348" font-size="10" fill="#1a7f37" font-family="'Courier New', Courier, monospace">exit 0  # auto-updated every 6h via github actions</text>
+<svg width="480" height="320" viewBox="0 0 480 320" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="320" rx="10" fill="#ffffff" stroke="#d0d7de" stroke-width="1"/>
+  <rect width="480" height="48" rx="10" fill="#f6f8fa"/>
+  <rect y="38" width="480" height="10" fill="#f6f8fa"/>
+  <rect x="18" y="14" width="3" height="20" rx="1.5" fill="#1a7f37"/>
+  <text x="30" y="29" font-size="13" font-weight="600" fill="#1f2328" font-family="Arial, sans-serif">chmosama</text>
+  <text x="103" y="29" font-size="13" fill="#8c959f" font-family="Arial, sans-serif">/</text>
+  <text x="113" y="29" font-size="13" fill="#0969da" font-family="Arial, sans-serif">stats.sh</text>
+  <text x="462" y="29" font-size="10" fill="#8c959f" text-anchor="end" font-family="Arial, sans-serif">26 Jun 2026, 17:49 UTC</text>
+  <text x="22" y="68" font-size="11" fill="#1a7f37" font-family="'Courier New', monospace">$ ./stats --user chmosama --year 2026</text>
+  <rect x="1" y="76" width="478" height="22" fill="#f6f8fa"/>
+  <rect x="1" y="120" width="478" height="22" fill="#f6f8fa"/>
+  <rect x="1" y="164" width="478" height="22" fill="#f6f8fa"/>
+  <rect x="1" y="208" width="478" height="22" fill="#f6f8fa"/>
+  <rect x="1" y="252" width="478" height="22" fill="#f6f8fa"/>
+  <text x="22"  y="91" font-size="12" fill="#57606a" font-family="'Courier New', monospace">repos</text>
+  <text x="458" y="91" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">14</text>
+  <text x="22"  y="113" font-size="12" fill="#57606a" font-family="'Courier New', monospace">followers</text>
+  <text x="458" y="113" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">25</text>
+  <text x="22"  y="135" font-size="12" fill="#57606a" font-family="'Courier New', monospace">following</text>
+  <text x="458" y="135" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">58</text>
+  <text x="22"  y="157" font-size="12" fill="#57606a" font-family="'Courier New', monospace">commits_2026</text>
+  <text x="458" y="157" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">113</text>
+  <text x="22"  y="179" font-size="12" fill="#57606a" font-family="'Courier New', monospace">prs_merged</text>
+  <text x="458" y="179" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">175</text>
+  <text x="22"  y="201" font-size="12" fill="#57606a" font-family="'Courier New', monospace">contributions_2026</text>
+  <text x="458" y="201" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">178</text>
+  <text x="22"  y="223" font-size="12" fill="#57606a" font-family="'Courier New', monospace">repos_contributed_to</text>
+  <text x="458" y="223" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">3</text>
+  <text x="22"  y="245" font-size="12" fill="#57606a" font-family="'Courier New', monospace">open_issues</text>
+  <text x="458" y="245" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">3</text>
+  <text x="22"  y="267" font-size="12" fill="#57606a" font-family="'Courier New', monospace">account_age</text>
+  <text x="458" y="267" font-size="12" fill="#0969da" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">12.1 years</text>
+  <line x1="18" y1="283" x2="462" y2="283" stroke="#d0d7de" stroke-width="0.8"/>
+  <text x="22" y="299" font-size="10" fill="#8c959f" font-family="'Courier New', monospace">exit 0  # auto-updated every 6h via github actions</text>
 </svg>
