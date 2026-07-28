@@ -6,7 +6,7 @@
   <text x="30" y="29" font-size="13" font-weight="600" fill="#1f2328" font-family="Arial, sans-serif">chmosama</text>
   <text x="103" y="29" font-size="13" fill="#8c959f" font-family="Arial, sans-serif">/</text>
   <text x="113" y="29" font-size="13" fill="#0969da" font-family="Arial, sans-serif">stats.sh</text>
-  <text x="462" y="29" font-size="10" fill="#8c959f" text-anchor="end" font-family="Arial, sans-serif">28 Jul 2026, 02:03 UTC</text>
+  <text x="462" y="29" font-size="10" fill="#8c959f" text-anchor="end" font-family="Arial, sans-serif">28 Jul 2026, 08:25 UTC</text>
   <text x="22" y="68" font-size="11" fill="#1a7f37" font-family="'Courier New', monospace">$ ./stats --user chmosama --year 2026</text>
   <rect x="1" y="76" width="478" height="22" fill="#f6f8fa"/>
   <rect x="1" y="120" width="478" height="22" fill="#f6f8fa"/>
@@ -30,7 +30,7 @@
   <text x="22"  y="245" font-size="12" fill="#57606a" font-family="'Courier New', monospace">open_issues</text>
   <text x="458" y="245" font-size="12" fill="#1a7f37" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">3</text>
   <text x="22"  y="267" font-size="12" fill="#57606a" font-family="'Courier New', monospace">account_age</text>
-  <text x="458" y="267" font-size="12" fill="#0969da" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">12.1 years</text>
+  <text x="458" y="267" font-size="12" fill="#0969da" font-weight="700" text-anchor="end" font-family="'Courier New', monospace">12.2 years</text>
   <line x1="18" y1="283" x2="462" y2="283" stroke="#d0d7de" stroke-width="0.8"/>
   <text x="22" y="299" font-size="10" fill="#8c959f" font-family="'Courier New', monospace">exit 0  # auto-updated every 6h via github actions</text>
 </svg>
